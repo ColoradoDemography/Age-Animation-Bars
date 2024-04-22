@@ -14,3 +14,5 @@ Download animation (AVI), or save a PNG of a specific county/year.
 Created with D3.js and the JQuery UI.
 Screen Capture PNGs created with PhantomJS.
 Animation AVI downloads created with PhantomJS and FFMPEG.
+
+The data is kept in two javascript files. all.js is a static file of age data from 2009 and earlier. all_supplementalV is the most recent age estimates and forecasts. The supplemental data is created using the AgeAnimationUpdate R project.
