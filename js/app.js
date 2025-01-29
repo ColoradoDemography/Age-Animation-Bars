@@ -60,7 +60,7 @@ $(function() {
     $('#aselect').val(presetcounty);
 
     //ayear
-    var presetyear = params.year || "1990";
+    var presetyear = params.year || "2023";
     $('#ayear').val(presetyear);
 
     if (params.hide) {
@@ -154,7 +154,7 @@ $(function() {
 
 
 
-    var year = params.year || 1990;
+    var year = params.year || 2023;
     var county = params.county || "000";
 
 
@@ -274,28 +274,28 @@ $(function() {
         .attr("fill", function(d) {
             var cyear = (d.k);
             if (cyear < 1928) {
-                creturn = "rgba(247, 150, 70, 0.9)";
+                creturn = "rgba(239, 117, 33, 1)";
             }
             if (cyear > 1927 && cyear < 1946) {
-                creturn = "rgba(75, 172, 198, 0.9)";
+                creturn = "rgba(0, 25, 112, 1)";
             }
             if (cyear > 1945 && cyear < 1965) {
-                creturn = "rgba(128, 100, 162, 0.9)";
+                creturn = "rgba(255, 209, 0, 1)";
             }
             if (cyear > 1964 && cyear < 1981) {
-                creturn = "rgba(155, 187, 89, 0.9)";
+                creturn = "rgba(36, 93, 56, 1)";
             }
             if (cyear > 1980 && cyear < 1997) {
-                creturn = "rgba(192, 80, 77, 0.9)";
+                creturn = "rgba(195, 0, 47, 1)";
             }
             if (cyear > 1996 && cyear < 2015) {
-                creturn = "rgba(0, 0, 255, 0.9)";
+                creturn = "rgba(53, 100, 126, 1)";
             }
             if (cyear > 2014 && cyear < 2030) {
-                creturn = "rgba(102, 51, 0, 0.9)";
+                creturn = "rgba(122, 133, 59, 1)";
             }
             if (cyear > 2029) {
-                creturn = "rgba(79, 129, 189, 0.9)";
+                creturn = "rgba(109, 58, 93, 1)";
             }
             return creturn;
         })
@@ -333,28 +333,28 @@ $(function() {
             .attr("fill", function(d) {
                 var cyear = (d.k);
                 if (cyear < 1928) {
-                    creturn = "rgba(247, 150, 70, 0.9)";
+                    creturn = "rgba(239, 117, 33, 1)";
                 }
                 if (cyear > 1927 && cyear < 1946) {
-                    creturn = "rgba(75, 172, 198, 0.9)";
+                    creturn = "rgba(0, 25, 112, 1)";
                 }
                 if (cyear > 1945 && cyear < 1965) {
-                    creturn = "rgba(128, 100, 162, 0.9)";
+                    creturn = "rgba(255, 209, 0, 1)";
                 }
                 if (cyear > 1964 && cyear < 1981) {
-                    creturn = "rgba(155, 187, 89, 0.9)";
+                    creturn = "rgba(36, 93, 56, 1)";
                 }
                 if (cyear > 1980 && cyear < 1997) {
-                    creturn = "rgba(192, 80, 77, 0.9)";
+                    creturn = "rgba(195, 0, 47, 1)";
                 }
                 if (cyear > 1996 && cyear < 2015) {
-                    creturn = "rgba(0, 0, 255, 0.9)";
+                    creturn = "rgba(53, 100, 126, 1)";
                 }
                 if (cyear > 2014 && cyear < 2030) {
-                    creturn = "rgba(102, 51, 0, 0.9)";
+                    creturn = "rgba(122, 133, 59, 1)";
                 }
                 if (cyear > 2029) {
-                    creturn = "rgba(79, 129, 189, 0.9)";
+                    creturn = "rgba(109, 58, 93, 1)";
                 }
                 return creturn;
             })
@@ -378,28 +378,28 @@ $(function() {
             .attr("fill", function(d) {
                 var cyear = (d.k);
                 if (cyear < 1928) {
-                    creturn = "rgba(247, 150, 70, 0.9)";
+                    creturn = "rgba(239, 117, 33, 1)";
                 }
                 if (cyear > 1927 && cyear < 1946) {
-                    creturn = "rgba(75, 172, 198, 0.9)";
+                    creturn = "rgba(0, 25, 112, 1)";
                 }
                 if (cyear > 1945 && cyear < 1965) {
-                    creturn = "rgba(128, 100, 162, 0.9)";
+                    creturn = "rgba(255, 209, 0, 1)";
                 }
                 if (cyear > 1964 && cyear < 1981) {
-                    creturn = "rgba(155, 187, 89, 0.9)";
+                    creturn = "rgba(36, 93, 56, 1)";
                 }
                 if (cyear > 1980 && cyear < 1997) {
-                    creturn = "rgba(192, 80, 77, 0.9)";
+                    creturn = "rgba(195, 0, 47, 1)";
                 }
                 if (cyear > 1996 && cyear < 2015) {
-                    creturn = "rgba(0, 0, 255, 0.9)";
+                    creturn = "rgba(53, 100, 126, 1)";
                 }
                 if (cyear > 2014 && cyear < 2030) {
-                    creturn = "rgba(102, 51, 0, 0.9)";
+                    creturn = "rgba(122, 133, 59, 1)";
                 }
                 if (cyear > 2029) {
-                    creturn = "rgba(79, 129, 189, 0.9)";
+                    creturn = "rgba(109, 58, 93, 1)";
                 }
                 return creturn;
             });
