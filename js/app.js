@@ -274,28 +274,28 @@ $(function() {
         .attr("fill", function(d) {
             var cyear = (d.k);
             if (cyear < 1928) {
-                creturn = "rgba(239, 117, 33, 1)";
+                creturn = "rgb(27, 14, 92)";
             }
             if (cyear > 1927 && cyear < 1946) {
-                creturn = "rgba(0, 25, 112, 1)";
+                creturn = "rgb(170,68,153)";
             }
             if (cyear > 1945 && cyear < 1965) {
-                creturn = "rgba(255, 209, 0, 1)";
+                creturn = "rgb(17,119,51)";
             }
             if (cyear > 1964 && cyear < 1981) {
-                creturn = "rgba(36, 93, 56, 1)";
+                creturn = "rgb(136,204,238)";
             }
             if (cyear > 1980 && cyear < 1997) {
-                creturn = "rgba(195, 0, 47, 1)";
+                creturn = "rgb(136,34,85)";
             }
             if (cyear > 1996 && cyear < 2015) {
-                creturn = "rgba(53, 100, 126, 1)";
+                creturn = "rgb(204,102,119)";
             }
             if (cyear > 2014 && cyear < 2030) {
-                creturn = "rgba(122, 133, 59, 1)";
+                creturn = "rgb(153,153,51)";
             }
             if (cyear > 2029) {
-                creturn = "rgba(109, 58, 93, 1)";
+                creturn = "rgb(221,204,119)";
             }
             return creturn;
         })
@@ -333,28 +333,28 @@ $(function() {
             .attr("fill", function(d) {
                 var cyear = (d.k);
                 if (cyear < 1928) {
-                    creturn = "rgba(239, 117, 33, 1)";
+                    creturn = "rgb(27, 14, 92)";
                 }
                 if (cyear > 1927 && cyear < 1946) {
-                    creturn = "rgba(0, 25, 112, 1)";
+                    creturn = "rgb(170,68,153)";
                 }
                 if (cyear > 1945 && cyear < 1965) {
-                    creturn = "rgba(255, 209, 0, 1)";
+                    creturn = "rgb(17,119,51)";
                 }
                 if (cyear > 1964 && cyear < 1981) {
-                    creturn = "rgba(36, 93, 56, 1)";
+                    creturn = "rgb(136,204,238)";
                 }
                 if (cyear > 1980 && cyear < 1997) {
-                    creturn = "rgba(195, 0, 47, 1)";
+                    creturn = "rgb(136,34,85)";
                 }
                 if (cyear > 1996 && cyear < 2015) {
-                    creturn = "rgba(53, 100, 126, 1)";
+                    creturn = "rgb(204,102,119)";
                 }
                 if (cyear > 2014 && cyear < 2030) {
-                    creturn = "rgba(122, 133, 59, 1)";
+                    creturn = "rgb(153,153,51)";
                 }
                 if (cyear > 2029) {
-                    creturn = "rgba(109, 58, 93, 1)";
+                    creturn = "rgb(221,204,119)";
                 }
                 return creturn;
             })
@@ -378,28 +378,28 @@ $(function() {
             .attr("fill", function(d) {
                 var cyear = (d.k);
                 if (cyear < 1928) {
-                    creturn = "rgba(239, 117, 33, 1)";
+                    creturn = "rgb(27, 14, 92)";
                 }
                 if (cyear > 1927 && cyear < 1946) {
-                    creturn = "rgba(0, 25, 112, 1)";
+                    creturn = "rgb(170,68,153)";
                 }
                 if (cyear > 1945 && cyear < 1965) {
-                    creturn = "rgba(255, 209, 0, 1)";
+                    creturn = "rgb(17,119,51)";
                 }
                 if (cyear > 1964 && cyear < 1981) {
-                    creturn = "rgba(36, 93, 56, 1)";
+                    creturn = "rgb(136,204,238)";
                 }
                 if (cyear > 1980 && cyear < 1997) {
-                    creturn = "rgba(195, 0, 47, 1)";
+                    creturn = "rgb(136,34,85)";
                 }
                 if (cyear > 1996 && cyear < 2015) {
-                    creturn = "rgba(53, 100, 126, 1)";
+                    creturn = "rgb(204,102,119)";
                 }
                 if (cyear > 2014 && cyear < 2030) {
-                    creturn = "rgba(122, 133, 59, 1)";
+                    creturn = "rgb(153,153,51)";
                 }
                 if (cyear > 2029) {
-                    creturn = "rgba(109, 58, 93, 1)";
+                    creturn = "rgb(221,204,119)";
                 }
                 return creturn;
             });
