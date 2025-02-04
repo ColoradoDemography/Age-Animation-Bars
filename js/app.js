@@ -274,28 +274,28 @@ $(function() {
         .attr("fill", function(d) {
             var cyear = (d.k);
             if (cyear < 1928) {
-                creturn = "rgb(0,25,112)";
+                creturn = "rgb(180,180,180)";
             }
             if (cyear > 1927 && cyear < 1946) {
-                creturn = "rgb(0,122,222)";
+                creturn = "rgb(198,219,239)";
             }
             if (cyear > 1945 && cyear < 1965) {
-                creturn = "rgb(0,0,0)";
+                creturn = "rgb(115,115,115)";
             }
             if (cyear > 1964 && cyear < 1981) {
-                creturn = "rgb(191,191,191)";
+                creturn = "rgb(107,174,214)";
             }
             if (cyear > 1980 && cyear < 1997) {
-                creturn = "rgb(53,100,126)";
+                creturn = "rgb(50,50,50)";
             }
             if (cyear > 1996 && cyear < 2015) {
-                creturn = "rgb(93,153,189)";
+                creturn = "rgb(33,113,181)";
             }
             if (cyear > 2014 && cyear < 2030) {
-                creturn = "rgb(109,58,93)";
+                creturn = "rgb(10,10,10)";
             }
             if (cyear > 2029) {
-                creturn = "rgb(159,127,179)";
+                creturn = "rgb(8,48,107)";
             }
             return creturn;
         })
@@ -333,28 +333,28 @@ $(function() {
             .attr("fill", function(d) {
                 var cyear = (d.k);
                 if (cyear < 1928) {
-                    creturn = "rgb(0,25,112)";
+                    creturn = "rgb(180,180,180)";
                 }
                 if (cyear > 1927 && cyear < 1946) {
-                    creturn = "rgb(0,122,222)";
+                    creturn = "rgb(198,219,239)";
                 }
                 if (cyear > 1945 && cyear < 1965) {
-                    creturn = "rgb(0,0,0)";
+                    creturn = "rgb(115,115,115)";
                 }
                 if (cyear > 1964 && cyear < 1981) {
-                    creturn = "rgb(191,191,191)";
+                    creturn = "rgb(107,174,214)";
                 }
                 if (cyear > 1980 && cyear < 1997) {
-                    creturn = "rgb(53,100,126)";
+                    creturn = "rgb(50,50,50)";
                 }
                 if (cyear > 1996 && cyear < 2015) {
-                    creturn = "rgb(93,153,189)";
+                    creturn = "rgb(33,113,181)";
                 }
                 if (cyear > 2014 && cyear < 2030) {
-                    creturn = "rgb(109,58,93)";
+                    creturn = "rgb(10,10,10)";
                 }
                 if (cyear > 2029) {
-                    creturn = "rgb(159,127,179)";
+                    creturn = "rgb(8,48,107)";
                 }
                 return creturn;
             })
@@ -378,28 +378,28 @@ $(function() {
             .attr("fill", function(d) {
                 var cyear = (d.k);
                 if (cyear < 1928) {
-                    creturn = "rgb(0,25,112)";
+                    creturn = "rgb(180,180,180)";
                 }
                 if (cyear > 1927 && cyear < 1946) {
-                    creturn = "rgb(0,122,222)";
+                    creturn = "rgb(198,219,239)";
                 }
                 if (cyear > 1945 && cyear < 1965) {
-                    creturn = "rgb(0,0,0)";
+                    creturn = "rgb(115,115,115)";
                 }
                 if (cyear > 1964 && cyear < 1981) {
-                    creturn = "rgb(191,191,191)";
+                    creturn = "rgb(107,174,214)";
                 }
                 if (cyear > 1980 && cyear < 1997) {
-                    creturn = "rgb(53,100,126)";
+                    creturn = "rgb(50,50,50)";
                 }
                 if (cyear > 1996 && cyear < 2015) {
-                    creturn = "rgb(93,153,189)";
+                    creturn = "rgb(33,113,181)";
                 }
                 if (cyear > 2014 && cyear < 2030) {
-                    creturn = "rgb(109,58,93)";
+                    creturn = "rgb(10,10,10)";
                 }
                 if (cyear > 2029) {
-                    creturn = "rgb(159,127,179)";
+                    creturn = "rgb(8,48,107)";
                 }
                 return creturn;
             });
