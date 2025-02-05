@@ -67,6 +67,7 @@ $(function() {
         $('#controls').hide();
         $('#dlvideo').hide();
         $('#abutton').hide();
+        $('#attrib').hide();
     }
 
 
@@ -208,8 +209,34 @@ $(function() {
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0])
-        .html(function(d) {
-            return "Age: <span style='color:white'>" + (Number(year) - Number(d.k)) + "</span><br />Birth Year: <span style='color:white'>" + (Number(d.k)) + "</span><br />Population: <span style='color:white'>" + commafy(d.v) + "</span>";
+        .html(function(d)
+            {var cyear = (d.k);
+            if (cyear < 1928) {
+                creturn = "Greatest Generation";
+            }
+            if (cyear > 1927 && cyear < 1946) {
+                creturn = "Silent Generation";
+            }
+            if (cyear > 1945 && cyear < 1965) {
+                creturn = "Baby Boomers";
+            }
+            if (cyear > 1964 && cyear < 1981) {
+                creturn = "Generation X";
+            }
+            if (cyear > 1980 && cyear < 1997) {
+                creturn = "Millenials";
+            }
+            if (cyear > 1996 && cyear < 2015) {
+                creturn = "Generation Z";
+            }
+            if (cyear > 2014 && cyear < 2030) {
+                creturn = "Generation Alpha";
+            }
+            if (cyear > 2029) {
+                creturn = "Future Generations";
+            }
+            //return creturn;}
+            return "Age: <span style='color:white'>" + (Number(year) - Number(d.k)) + "</span><br />Birth Year: <span style='color:white'>" + (Number(d.k)) + "</span><br />Generation: <span style='color:white'>" + creturn + "</span><br />Population: <span style='color:white'>" + commafy(d.v) + "</span>";
         })
 
     //Create SVG element
