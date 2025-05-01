@@ -192,7 +192,7 @@ $(function() {
         return d3.svg.axis()
             .scale(yScaleAxis)
             .orient("left")
-            .ticks(10)
+            .ticks(10, "s")
     }
 
 
