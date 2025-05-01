@@ -192,7 +192,7 @@ $(function() {
         return d3.svg.axis()
             .scale(yScaleAxis)
             .orient("left")
-            .ticks(10, "s")
+            .ticks(10)
     }
 
 
@@ -204,7 +204,7 @@ $(function() {
     var yAxis = d3.svg.axis()
         .scale(yScaleAxis)
         .orient("left")
-        .ticks(10);
+        .ticks(10, "s");
 
     var tip = d3.tip()
         .attr('class', 'd3-tip')
