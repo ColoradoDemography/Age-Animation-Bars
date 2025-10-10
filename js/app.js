@@ -550,6 +550,7 @@ $(function() {
                 return d.v;
             })
         }
+        console.log(Math.max.apply(Math, years));
         return Math.max.apply(Math, years);
     }
 
