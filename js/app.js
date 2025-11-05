@@ -60,7 +60,7 @@ $(function() {
     $('#aselect').val(presetcounty);
 
     //ayear
-    var presetyear = params.year || "2023";
+    var presetyear = params.year || "2024";
     $('#ayear').val(presetyear);
 
     if (params.hide) {
@@ -155,7 +155,7 @@ $(function() {
 
 
 
-    var year = params.year || 2023;
+    var year = params.year || 2024;
     var county = params.county || "000";
 
 
@@ -438,7 +438,7 @@ $(function() {
 
 
     function animate() {
-        var stopyear = parseInt(params.stop, 10) || 2050;
+        var stopyear = parseInt(params.stop, 10) || 2060;
 
 
         if (l == 0) {
@@ -471,7 +471,7 @@ $(function() {
                 clearInterval(l);
                 year = stopyear;
                 l = 0;
-                var presetyear = params.stop || "2050";
+                var presetyear = params.stop || "2060";
                 presetyear = presetyear.toString();
                 $('#ayear').val(presetyear);
                 $("#ayear").selectmenu("refresh");
