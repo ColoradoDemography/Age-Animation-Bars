@@ -298,32 +298,32 @@ $(function() {
         .attr("height", function(d) {
             return yScale(d.v);
         })
-        .attr("fill", function(d) {
-            var cyear = (d.k);
-            if (cyear < 1928) {
-                creturn = "rgb(180,180,180)";
-            }
-            if (cyear > 1927 && cyear < 1946) {
-                creturn = "rgb(198,219,239)";
-            }
-            if (cyear > 1945 && cyear < 1965) {
-                creturn = "rgb(115,115,115)";
-            }
-            if (cyear > 1964 && cyear < 1981) {
-                creturn = "rgb(107,174,214)";
-            }
-            if (cyear > 1980 && cyear < 1997) {
-                creturn = "rgb(70,70,70)";
-            }
-            if (cyear > 1996 && cyear < 2015) {
-                creturn = "rgb(33,113,181)";
-            }
-            if (cyear > 2014 && cyear < 2030) {
-                creturn = "rgb(10,10,10)";
-            }
-            if (cyear > 2029) {
-                creturn = "rgb(8,48,107)";
-            }
+            .attr("fill", function(d) {
+                var cyear = (d.k);
+                if (cyear < 1928) {
+                    creturn = "#001970";
+                }
+                if (cyear > 1927 && cyear < 1946) {
+                    creturn = "#ffd100";
+                }
+                if (cyear > 1945 && cyear < 1965) {
+                    creturn = "#c3002f";
+                }
+                if (cyear > 1964 && cyear < 1981) {
+                    creturn = "#6d3a5d";
+                }
+                if (cyear > 1980 && cyear < 1997) {
+                    creturn = "#7a853b";
+                }
+                if (cyear > 1996 && cyear < 2015) {
+                    creturn = "#35647e";
+                }
+                if (cyear > 2014 && cyear < 2030) {
+                    creturn = "#ef7521";
+                }
+                if (cyear > 2029) {
+                    creturn = "#245d38";
+                }
             return creturn;
         })
         .on('mouseover', tip.show)
@@ -357,34 +357,34 @@ $(function() {
             .attr("height", function(d) {
                 return yScale(d.v);
             })
-            .attr("fill", function(d) {
+           .attr("fill", function(d) {
                 var cyear = (d.k);
                 if (cyear < 1928) {
-                    creturn = "rgb(180,180,180)";
+                    creturn = "#001970";
                 }
                 if (cyear > 1927 && cyear < 1946) {
-                    creturn = "rgb(198,219,239)";
+                    creturn = "#ffd100";
                 }
                 if (cyear > 1945 && cyear < 1965) {
-                    creturn = "rgb(115,115,115)";
+                    creturn = "#c3002f";
                 }
                 if (cyear > 1964 && cyear < 1981) {
-                    creturn = "rgb(107,174,214)";
+                    creturn = "#6d3a5d";
                 }
                 if (cyear > 1980 && cyear < 1997) {
-                    creturn = "rgb(70,70,70)";
+                    creturn = "#7a853b";
                 }
                 if (cyear > 1996 && cyear < 2015) {
-                    creturn = "rgb(33,113,181)";
+                    creturn = "#35647e";
                 }
                 if (cyear > 2014 && cyear < 2030) {
-                    creturn = "rgb(10,10,10)";
+                    creturn = "#ef7521";
                 }
                 if (cyear > 2029) {
-                    creturn = "rgb(8,48,107)";
+                    creturn = "#245d38";
                 }
-                return creturn;
-            })
+            return creturn;
+        })
             .on('mouseover', tip.show)
             .on('mouseout', tip.hide);
 
@@ -405,31 +405,31 @@ $(function() {
             .attr("fill", function(d) {
                 var cyear = (d.k);
                 if (cyear < 1928) {
-                    creturn = "rgb(180,180,180)";
+                    creturn = "#001970";
                 }
                 if (cyear > 1927 && cyear < 1946) {
-                    creturn = "rgb(198,219,239)";
+                    creturn = "#ffd100";
                 }
                 if (cyear > 1945 && cyear < 1965) {
-                    creturn = "rgb(115,115,115)";
+                    creturn = "#c3002f";
                 }
                 if (cyear > 1964 && cyear < 1981) {
-                    creturn = "rgb(107,174,214)";
+                    creturn = "#6d3a5d";
                 }
                 if (cyear > 1980 && cyear < 1997) {
-                    creturn = "rgb(70,70,70)";
+                    creturn = "#7a853b";
                 }
                 if (cyear > 1996 && cyear < 2015) {
-                    creturn = "rgb(33,113,181)";
+                    creturn = "#35647e";
                 }
                 if (cyear > 2014 && cyear < 2030) {
-                    creturn = "rgb(10,10,10)";
+                    creturn = "#ef7521";
                 }
                 if (cyear > 2029) {
-                    creturn = "rgb(8,48,107)";
+                    creturn = "#245d38";
                 }
-                return creturn;
-            });
+            return creturn;
+        })
 
 
         bars.exit().remove();
