@@ -56,11 +56,11 @@ $(function() {
 
     //aselect
 
-    var presetcounty = params.county || "000";
+    var presetcounty = params.county || 0;
     $('#aselect').val(presetcounty);
 
     //ayear
-    var presetyear = params.year || "2024";
+    var presetyear = params.year || 2024;
     $('#ayear').val(presetyear);
 
     if (params.hide) {
@@ -156,15 +156,15 @@ $(function() {
 
 
     var year = params.year || 2024;
-    var county = params.county || "000";
+    var county = params.county || 0;
 
 
     document.getElementById('title').innerHTML = changetitle(county);
     document.getElementById('year').innerHTML = year;
 
-
-    var dataset = eval("_" + county + "_" + String(year));
-
+    var dataset = getSYA(county,year);
+   //var dataset = eval("_" + county + "_" + String(year));
+console.log(dataset);
 
     var xScale = d3.scale.linear()
         .domain([0, 90])
@@ -210,7 +210,7 @@ $(function() {
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function(d)
-            {var cyear = (d.k);
+            {var cyear = (Number(d.year)-Number(d.age));
             if (cyear < 1928) {
                 creturn = "Greatest Generation";
             }
@@ -236,7 +236,7 @@ $(function() {
                 creturn = "Future Generations";
             }
             //return creturn;}
-            return "Age: <span style='color:white'>" + (Number(year) - Number(d.k)) + "</span><br />Birth Year: <span style='color:white'>" + (Number(d.k)) + "</span><br />Generation: <span style='color:white'>" + creturn + "</span><br />Population: <span style='color:white'>" + commafy(d.v) + "</span>";
+            return "Age: <span style='color:white'>" + (Number(d.age)) + "</span><br />Birth Year: <span style='color:white'>" + (Number(d.year)-Number(d.age)) + "</span><br />Generation: <span style='color:white'>" + creturn + "</span><br />Population: <span style='color:white'>" + commafy(d.totalpopulation) + "</span>";
         })
 
     //Create SVG element
@@ -280,7 +280,7 @@ $(function() {
 
     //Define key function, to be used when binding data
     var k = function(d) {
-        return d.k;
+        return (d.age);
     };
 
     //Create bars
@@ -289,17 +289,17 @@ $(function() {
         .enter()
         .append("rect")
         .attr("x", function(d) {
-            return (padding - 4 + ((year - d.k) * 10.265));
+            return (padding - 4 + ((year - (Number(d.year)-Number(d.age))) * 10.265));
         })
         .attr("y", function(d) {
-            return (h - yScale(d.v)) - spadding - 2;
+            return (h - yScale(d.totalpopulation)) - spadding - 2;
         })
         .attr("width", 7.5)
         .attr("height", function(d) {
-            return yScale(d.v);
+            return yScale(d.totalpopulation);
         })
             .attr("fill", function(d) {
-                var cyear = (d.k);
+                var cyear = (Number(d.year)-Number(d.age));
                 if (cyear < 1928) {
                     creturn = "#001970";
                 }
@@ -339,7 +339,8 @@ $(function() {
 
     function update() {
 
-        dataset = eval("_" + county + "_" + String(year));
+        //dataset = eval("_" + county + "_" + String(year));
+        dataset = getSYA(county,year);
 
         //Select…
         var bars = svg.selectAll("rect")
@@ -348,17 +349,17 @@ $(function() {
 
         bars.enter().append("rect")
             .attr("x", function(d) {
-                return (padding - 4 + ((year - d.k) * 10.265));
+                return (padding - 4 + ((year - (Number(d.year)-Number(d.age))) * 10.265));
             })
             .attr("y", function(d) {
-                return (h - yScale(d.v)) - spadding - 2;
+                return (h - yScale(d.totalpopulation)) - spadding - 2;
             })
             .attr("width", 7.5)
             .attr("height", function(d) {
-                return yScale(d.v);
+                return yScale(d.totalpopulation);
             })
            .attr("fill", function(d) {
-                var cyear = (d.k);
+                var cyear = (Number(d.year)-Number(d.age));
                 if (cyear < 1928) {
                     creturn = "#001970";
                 }
@@ -393,17 +394,17 @@ $(function() {
             .duration(speed)
             .ease("linear")
             .attr("x", function(d) {
-                return (padding - 4 + ((year - d.k) * 10.265));
+                return (padding - 4 + ((year - (Number(d.year)-Number(d.age))) * 10.265));
             })
             .attr("y", function(d) {
-                return (h - yScale(d.v)) - spadding - 2;
+                return (h - yScale(d.totalpopulation)) - spadding - 2;
             })
             .attr("width", 7.5)
             .attr("height", function(d) {
-                return yScale(d.v);
+                return yScale(d.totalpopulation);
             })
             .attr("fill", function(d) {
-                var cyear = (d.k);
+                var cyear = (Number(d.year)-Number(d.age));
                 if (cyear < 1928) {
                     creturn = "#001970";
                 }
@@ -513,10 +514,10 @@ $(function() {
 
         county = pvalue;
 
-        dataset = eval("_" + county + "_" + String(year));
-
-
-        datasetmax = eval("_" + county + "_2050");
+        //dataset = eval("_" + county + "_" + String(year));
+        dataset = getSYA(county,year);
+        datasetmax = getSYA(county,2060);
+        //datasetmax = eval("_" + county + "_2050");
 
         yScale.domain([0, maxlookup(county)]);
 
@@ -543,214 +544,412 @@ $(function() {
     }
 
 
-    function maxlookup(county) {
+    /* function maxlookup(county) {console.log(county);
         var years = [];
-        for (i = 0; i < 61; i++) {
-            years[i] = d3.max(eval("_" + county + "_" + String(1990 + i)), function(d) {
-                return d.v;
+        for (i = 0; i < 71; i++) {
+            //years[i] = d3.max(eval("_" + county + "_" + String(1990 + i)), function(d) {
+            years[i] = d3.max(getSYA(county,(1990 + i)), function(d) {
+                return d.totalpopulation;  
+                //console.log(d.totalpopulation);
             })
         }
         console.log(Math.max.apply(Math, years));
         return Math.max.apply(Math, years);
+    } */
+
+    function maxlookup(pvalue){
+        if (pvalue == 0) {
+            return 107422;
+        }
+        if (pvalue == 1) {
+            return 11711;
+        }
+        if (pvalue == 3) {
+            return 499;
+        }
+        if (pvalue == 5) {
+            return 13159;
+        }
+        if (pvalue == 7) {
+            return 339;
+        }
+        if (pvalue == 9) {
+            return 93;
+        }
+        if (pvalue == 11) {
+            return 147;
+        }
+        if (pvalue == 13) {
+            return 8555;
+        }
+        if (pvalue == 14) {
+            return 1935;
+        }
+        if (pvalue == 15) {
+            return 455;
+        }
+        if (pvalue == 17) {
+            return 65;
+        }
+        if (pvalue == 19) {
+            return 264;
+        }
+        if (pvalue == 21) {
+            return 185;
+        }
+        if (pvalue == 23) {
+            return 90;
+        }
+        if (pvalue == 25) {
+            return 174;
+        }
+        if (pvalue == 27) {
+            return 169;
+        }
+        if (pvalue == 29) {
+            return 732;
+        }
+        if (pvalue == 31) {
+            return 21404;
+        }
+        if (pvalue == 33) {
+            return 65;
+        }
+        if (pvalue == 35) {
+            return 8608;
+        }
+        if (pvalue == 37) {
+            return 1537;
+        }
+        if (pvalue == 39) {
+            return 694;
+        }
+        if (pvalue == 41) {
+            return 17307;
+        }
+        if (pvalue == 43) {
+            return 984;
+        }
+        if (pvalue == 45) {
+            return 1431;
+        }
+        if (pvalue == 47) {
+            return 169;
+        }
+        if (pvalue == 49) {
+            return 395;
+        }
+        if (pvalue == 51) {
+            return 766;
+        }
+        if (pvalue == 53) {
+            return 40;
+        }
+        if (pvalue == 55) {
+            return 182;
+        }
+        if (pvalue == 57) {
+            return 49;
+        }
+        if (pvalue == 59) {
+            return 10428;
+        }
+        if (pvalue == 61) {
+            return 51;
+        }
+        if (pvalue == 63) {
+            return 194;
+        }
+        if (pvalue == 65) {
+            return 168;
+        }
+        if (pvalue == 67) {
+            return 1161;
+        }
+        if (pvalue == 69) {
+            return 7451;
+        }
+        if (pvalue == 71) {
+            return 318;
+        }
+        if (pvalue == 73) {
+            return 193;
+        }
+        if (pvalue == 75) {
+            return 543;
+        }
+        if (pvalue == 77) {
+            return 3385;
+        }
+        if (pvalue == 79) {
+            return 46;
+        }
+        if (pvalue == 81) {
+            return 272;
+        }
+        if (pvalue == 83) {
+            return 558;
+        }
+        if (pvalue == 85) {
+            return 924;
+        }
+        if (pvalue == 87) {
+            return 557;
+        }
+        if (pvalue == 89) {
+            return 365;
+        }
+        if (pvalue == 91) {
+            return 148;
+        }
+        if (pvalue == 93) {
+            return 438;
+        }
+        if (pvalue == 95) {
+            return 89;
+        }
+        if (pvalue == 97) {
+            return 446;
+        }
+        if (pvalue == 99) {
+            return 272;
+        }
+        if (pvalue == 101) {
+            return 3302;
+        }
+        if (pvalue == 103) {
+            return 172;
+        }
+        if (pvalue == 105) {
+            return 233;
+        }
+        if (pvalue == 107) {
+            return 533;
+        }
+        if (pvalue == 109) {
+            return 160;
+        }
+        if (pvalue == 111) {
+            return 36;
+        }
+        if (pvalue == 113) {
+            return 287;
+        }
+        if (pvalue == 115) {
+            return 58;
+        }
+        if (pvalue == 117) {
+            return 1286;
+        }
+        if (pvalue == 119) {
+            return 606;
+        }
+        if (pvalue == 121) {
+            return 99;
+        }
+        if (pvalue == 123) {
+            return 8716;
+        }
+        if (pvalue == 125) {
+            return 202;
+        }
     }
 
 
-
-
     function changetitle(pvalue) {
-        if (pvalue == "000") {
+        if (pvalue == 0) {
             return "Colorado";
         }
-        if (pvalue == "001") {
+        if (pvalue == 1) {
             return "Adams County";
         }
-        if (pvalue == "003") {
+        if (pvalue == 3) {
             return "Alamosa County";
         }
-        if (pvalue == "005") {
+        if (pvalue == 5) {
             return "Arapahoe County";
         }
-        if (pvalue == "007") {
+        if (pvalue == 7) {
             return "Archuleta County";
         }
-        if (pvalue == "009") {
+        if (pvalue == 9) {
             return "Baca County";
         }
-        if (pvalue == "011") {
+        if (pvalue == 11) {
             return "Bent County";
         }
-        if (pvalue == "013") {
+        if (pvalue == 13) {
             return "Boulder County";
         }
-        if (pvalue == "014") {
+        if (pvalue == 14) {
             return "Broomfield County";
         }
-        if (pvalue == "015") {
+        if (pvalue == 15) {
             return "Chaffee County";
         }
-        if (pvalue == "017") {
+        if (pvalue == 17) {
             return "Cheyenne County";
         }
-        if (pvalue == "019") {
+        if (pvalue == 19) {
             return "Clear Creek County";
         }
-        if (pvalue == "021") {
+        if (pvalue == 21) {
             return "Conejos County";
         }
-        if (pvalue == "023") {
+        if (pvalue == 23) {
             return "Costilla County";
         }
-        if (pvalue == "025") {
+        if (pvalue == 25) {
             return "Crowley County";
         }
-        if (pvalue == "027") {
+        if (pvalue == 27) {
             return "Custer County";
         }
-        if (pvalue == "029") {
+        if (pvalue == 29) {
             return "Delta County";
         }
-        if (pvalue == "031") {
+        if (pvalue == 31) {
             return "Denver County";
         }
-        if (pvalue == "033") {
+        if (pvalue == 33) {
             return "Dolores County";
         }
-        if (pvalue == "035") {
+        if (pvalue == 35) {
             return "Douglas County";
         }
-        if (pvalue == "037") {
+        if (pvalue == 37) {
             return "Eagle County";
         }
-        if (pvalue == "039") {
+        if (pvalue == 39) {
             return "Elbert County";
         }
-        if (pvalue == "041") {
+        if (pvalue == 41) {
             return "El Paso County";
         }
-        if (pvalue == "043") {
+        if (pvalue == 43) {
             return "Fremont County";
         }
-        if (pvalue == "045") {
+        if (pvalue == 45) {
             return "Garfield County";
         }
-        if (pvalue == "047") {
+        if (pvalue == 47) {
             return "Gilpin County";
         }
-        if (pvalue == "049") {
+        if (pvalue == 49) {
             return "Grand County";
         }
-        if (pvalue == "051") {
+        if (pvalue == 51) {
             return "Gunnison County";
         }
-        if (pvalue == "053") {
+        if (pvalue == 53) {
             return "Hinsdale County";
         }
-        if (pvalue == "055") {
+        if (pvalue == 55) {
             return "Huerfano County";
         }
-        if (pvalue == "057") {
+        if (pvalue == 57) {
             return "Jackson County";
         }
-        if (pvalue == "059") {
+        if (pvalue == 59) {
             return "Jefferson County";
         }
-        if (pvalue == "061") {
+        if (pvalue == 61) {
             return "Kiowa County";
         }
-        if (pvalue == "063") {
+        if (pvalue == 63) {
             return "Kit Carson County";
         }
-        if (pvalue == "065") {
+        if (pvalue == 65) {
             return "Lake County";
         }
-        if (pvalue == "067") {
+        if (pvalue == 67) {
             return "La Plata County";
         }
-        if (pvalue == "069") {
+        if (pvalue == 69) {
             return "Larimer County";
         }
-        if (pvalue == "071") {
+        if (pvalue == 71) {
             return "Las Animas County";
         }
-        if (pvalue == "073") {
+        if (pvalue == 73) {
             return "Lincoln County";
         }
-        if (pvalue == "075") {
+        if (pvalue == 75) {
             return "Logan County";
         }
-        if (pvalue == "077") {
+        if (pvalue == 77) {
             return "Mesa County";
         }
-        if (pvalue == "079") {
+        if (pvalue == 79) {
             return "Mineral County";
         }
-        if (pvalue == "081") {
+        if (pvalue == 81) {
             return "Moffat County";
         }
-        if (pvalue == "083") {
+        if (pvalue == 83) {
             return "Montezuma County";
         }
-        if (pvalue == "085") {
+        if (pvalue == 85) {
             return "Montrose County";
         }
-        if (pvalue == "087") {
+        if (pvalue == 87) {
             return "Morgan County";
         }
-        if (pvalue == "089") {
+        if (pvalue == 89) {
             return "Otero County";
         }
-        if (pvalue == "091") {
+        if (pvalue == 91) {
             return "Ouray County";
         }
-        if (pvalue == "093") {
+        if (pvalue == 93) {
             return "Park County";
         }
-        if (pvalue == "095") {
+        if (pvalue == 95) {
             return "Phillips County";
         }
-        if (pvalue == "097") {
+        if (pvalue == 97) {
             return "Pitkin County";
         }
-        if (pvalue == "099") {
+        if (pvalue == 99) {
             return "Prowers County";
         }
-        if (pvalue == "101") {
+        if (pvalue == 101) {
             return "Pueblo County";
         }
-        if (pvalue == "103") {
+        if (pvalue == 103) {
             return "Rio Blanco County";
         }
-        if (pvalue == "105") {
+        if (pvalue == 105) {
             return "Rio Grande County";
         }
-        if (pvalue == "107") {
+        if (pvalue == 107) {
             return "Routt County";
         }
-        if (pvalue == "109") {
+        if (pvalue == 109) {
             return "Saguache County";
         }
-        if (pvalue == "111") {
+        if (pvalue == 111) {
             return "San Juan County";
         }
-        if (pvalue == "113") {
+        if (pvalue == 113) {
             return "San Miguel County";
         }
-        if (pvalue == "115") {
+        if (pvalue == 115) {
             return "Sedgwick County";
         }
-        if (pvalue == "117") {
+        if (pvalue == 117) {
             return "Summit County";
         }
-        if (pvalue == "119") {
+        if (pvalue == 119) {
             return "Teller County";
         }
-        if (pvalue == "121") {
+        if (pvalue == 121) {
             return "Washington County";
         }
-        if (pvalue == "123") {
+        if (pvalue == 123) {
             return "Weld County";
         }
-        if (pvalue == "125") {
+        if (pvalue == 125) {
             return "Yuma County";
         }
 
@@ -777,5 +976,24 @@ $(function() {
         update();
     }
 
+    function getSYA(fips,year){
+        if (year < 2010){
+            var data = $.ajax({
+                url: "https://gis.dola.colorado.gov/lookups/sya?age=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89&county=" + fips + "&year=" + year + "&choice=single",
+                dataType: 'json',
+                async: false,
+            });
+        }
+
+        else {
+            var data = $.ajax({
+                url: "https://gis.dola.colorado.gov/lookups/sya?county=" + fips + "&year=" + year + "&choice=single",
+                dataType: 'json',
+                async: false,
+            });
+        }
+
+    return data.responseJSON;
+}
 
 });
