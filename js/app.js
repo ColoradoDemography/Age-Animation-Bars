@@ -60,7 +60,7 @@ $(function() {
     $('#aselect').val(presetcounty);
 
     //ayear
-    var presetyear = params.year || 2024;
+    var presetyear = params.year || 2025;
     $('#ayear').val(presetyear);
 
     if (params.hide) {
@@ -155,7 +155,7 @@ $(function() {
 
 
 
-    var year = params.year || 2024;
+    var year = params.year || 2025;
     var county = params.county || 0;
 
 
